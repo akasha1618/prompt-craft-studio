@@ -3,8 +3,8 @@ const { parse } = require('url')
 const next = require('next')
 
 const dev = process.env.NODE_ENV !== 'production'
-const hostname = process.env.HOSTNAME || 'localhost'
-const port = process.env.PORT || 3000
+const hostname = '0.0.0.0' // Allow all hosts for Azure
+const port = process.env.PORT || 8080 // Use Azure's PORT or default to 8080
 
 // when using middleware `hostname` and `port` must be provided below
 const app = next({ dev, hostname, port })
@@ -29,7 +29,8 @@ app.prepare().then(() => {
       console.error(err)
       process.exit(1)
     })
-    .listen(port, () => {
+    .listen(port, hostname, () => {
       console.log(`> Ready on http://${hostname}:${port}`)
+      console.log(`> Server listening on port ${port}`)
     })
 })

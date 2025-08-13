@@ -12,6 +12,11 @@ const nextConfig = {
     }
     return config
   },
+  // Azure App Service configuration
+  experimental: {
+    // Ensure proper host binding
+    serverComponentsExternalPackages: [],
+  },
 }
 
 module.exports = nextConfig 
