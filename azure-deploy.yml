@@ -1,0 +1,38 @@
+# Azure App Service Deployment Configuration
+# This file helps configure the deployment for Azure App Service
+
+# Build configuration
+build:
+  # Node.js version
+  node_version: "22"
+  
+  # Build command
+  build_command: "npm run build"
+  
+  # Start command
+  start_command: "npm start"
+  
+  # Environment variables needed
+  environment_variables:
+    - NEXT_PUBLIC_SUPABASE_URL
+    - NEXT_PUBLIC_SUPABASE_ANON_KEY
+    - NODE_ENV=production
+
+# Azure App Service specific settings
+azure:
+  # Platform settings
+  platform: "node"
+  platform_version: "22"
+  
+  # Build settings
+  build_settings:
+    - SCM_DO_BUILD_DURING_DEPLOYMENT=true
+    - WEBSITE_NODE_DEFAULT_VERSION=22.17.0
+    - NODE_ENV=production
+  
+  # Application settings
+  app_settings:
+    - WEBSITE_RUN_FROM_PACKAGE=1
+    - WEBSITE_NODE_DEFAULT_VERSION=22.17.0
+    - NODE_ENV=production
+    - NEXT_TELEMETRY_DISABLED=1
